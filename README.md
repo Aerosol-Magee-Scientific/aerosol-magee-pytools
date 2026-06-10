@@ -33,10 +33,15 @@ This project serves as a **de facto SDK** for Magee Scientific instruments, enab
 ## Project Structure
 
 aerosol_magee_pytools/
+
 ├── io/            # TCP/IP, UIDEP, file readers
+
 ├── qaqc/          # validation and filtering
+
 ├── processing/    # resampling and transformations
+
 ├── plotting/      # visualization tools
+
 └── utils/         # shared utilities
 
 ## 🤝 Contributing
