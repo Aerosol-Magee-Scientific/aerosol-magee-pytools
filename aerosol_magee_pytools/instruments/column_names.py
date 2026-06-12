@@ -520,7 +520,6 @@ COLUMNS_TCA08 = {
     'sqlite_sequence': ['name', 'seq'],
 }
 
-
 COLUMNS_AE33 = {
     'Data': [
         'SerialNumber', 'ID', 'StartTime', 'EndTime',
@@ -564,5 +563,45 @@ COLUMNS_AE33 = {
         'InstrumentIP', 'SubnetMask', 'Gateway', 'Baud',
         'NTPserver',
     ],
+    'TestReports': ['ID', 'Type', 'Timestamp', 'Passed', 'Report'],
+    'Log': ['ID', 'Timestamp', 'Severity', 'ClassID', 'MethodID', 'MessageID', 'Message'],
+    'Message': ['ID', 'Message'],
+    'Method': ['ID', 'Name'],
+    'NDTest': [
+        'ID', 'FilterSetSN', 'Timestamp', 'Reference',
+        'ch1s1f0', 'ch1s2f0', 'ch2s1f0', 'ch2s2f0',
+        'ch3s1f0', 'ch3s2f0', 'ch4s1f0', 'ch4s2f0',
+        'ch5s1f0', 'ch5s2f0', 'ch6s1f0', 'ch6s2f0',
+        'ch7s1f0', 'ch7s2f0', 'ch1s1f1', 'ch1s2f1',
+        'ch2s1f1', 'ch2s2f1', 'ch3s1f1', 'ch3s2f1',
+        'ch4s1f1', 'ch4s2f1', 'ch5s1f1', 'ch5s2f1',
+        'ch6s1f1', 'ch6s2f1', 'ch7s1f1', 'ch7s2f1',
+        'ch1s1f2', 'ch1s2f2', 'ch2s1f2', 'ch2s2f2',
+        'ch3s1f2', 'ch3s2f2', 'ch4s1f2', 'ch4s2f2',
+        'ch5s1f2', 'ch5s2f2', 'ch6s1f2', 'ch6s2f2',
+        'ch7s1f2', 'ch7s2f2', 'ch1s1f3', 'ch1s2f3',
+        'ch2s1f3', 'ch2s2f3', 'ch3s1f3', 'ch3s2f3',
+        'ch4s1f3', 'ch4s2f3', 'ch5s1f3', 'ch5s2f3',
+        'ch6s1f3', 'ch6s2f3', 'ch7s1f3', 'ch7s2f3',
+    ],
+    'ClassName': ['ID', 'Name'],
+    'FilterSet': [
+        'ID', 'FilterSetSN', 'Timestamp', 'ch1s1f0',
+        'ch1s2f0', 'ch2s1f0', 'ch2s2f0', 'ch3s1f0',
+        'ch3s2f0', 'ch4s1f0', 'ch4s2f0', 'ch5s1f0',
+        'ch5s2f0', 'ch6s1f0', 'ch6s2f0', 'ch7s1f0',
+        'ch7s2f0', 'ch1s1f1', 'ch1s2f1', 'ch2s1f1',
+        'ch2s2f1', 'ch3s1f1', 'ch3s2f1', 'ch4s1f1',
+        'ch4s2f1', 'ch5s1f1', 'ch5s2f1', 'ch6s1f1',
+        'ch6s2f1', 'ch7s1f1', 'ch7s2f1', 'ch1s1f2',
+        'ch1s2f2', 'ch2s1f2', 'ch2s2f2', 'ch3s1f2',
+        'ch3s2f2', 'ch4s1f2', 'ch4s2f2', 'ch5s1f2',
+        'ch5s2f2', 'ch6s1f2', 'ch6s2f2', 'ch7s1f2',
+        'ch7s2f2', 'ch1s1f3', 'ch1s2f3', 'ch2s1f3',
+        'ch2s2f3', 'ch3s1f3', 'ch3s2f3', 'ch4s1f3',
+        'ch4s2f3', 'ch5s1f3', 'ch5s2f3', 'ch6s1f3',
+        'ch6s2f3', 'ch7s1f3', 'ch7s2f3',
+    ],
+    'ExtDeviceSetup': ['ID', 'Timestamp', 'DeviceID1', 'DeviceID2', 'DeviceID3'],
+    'DateOrder': ['ID', 'Date', 'StartID', 'EndID'],
 }
-
