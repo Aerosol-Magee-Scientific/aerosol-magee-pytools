@@ -76,4 +76,4 @@ def uidep_get_data(ip, start=None, end=None, components=None, values_typ='comple
     if _data_dict:
         return pd.DataFrame(_data_dict)
     else:
-        return _data_dict
+        return _data
