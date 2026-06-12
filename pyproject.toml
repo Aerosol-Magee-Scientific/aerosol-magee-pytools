@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=71", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "aerosol-magee-pytools"
+version = "0.1.0"
+description = "Official Python toolkit by Aerosol Magee Scientific for real-time data access, processing, and analysis of aerosol instrument data."
+readme = "README.md"
+license = { file = "LICENCE" }
+authors = [
+    { name = "Aerosol Magee Scientific", email = "mivancic@aerosolmageesci.com" }
+]
+maintainers = [
+    { name = "Aerosol Magee Scientific", email = "mivancic@aerosolmageesci.com" }
+]
+keywords = [
+    "aethalometer",
+    "black carbon",
+    "aerosol",
+    "Magee Scientific",
+    "AE33",
+    "AE36",
+    "AE36s",
+    "TCA08",
+    "TCA09",
+    "UIDEP",
+    "TCP/IP",
+    "real-time data",
+    "aerosol instruments",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "pandas>=1.5",
+    "requests>=2.28",
+    "matplotlib>=3.6",
+]
+
+[project.optional-dependencies]
+notebooks = [
+    "jupyter>=1.0",
+    "ipykernel>=6.0",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.4",
+]
+
+[project.urls]
+Homepage = "https://www.aerosolmageesci.com"
+Repository = "https://github.com/Aerosol-Magee-Scientific/aerosol-magee-pytools/"
+"Bug Tracker" = "https://github.com/Aerosol-Magee-Scientific/aerosol-magee-pytools/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["aerosol_magee_pytools*"]
+exclude = ["tests*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
