@@ -2,7 +2,7 @@
 
 Official Python toolkit developed by **Aerosol Magee Scientific (Aerosol d.o.o.)** for real-time data access, processing, and analysis of aerosol instrument data.
 
-This project serves as a **de facto SDK** for Magee Scientific instruments, enabling standardized workflows for data acquisition, validation, and analysis.
+This project serves as a **de facto SDK** for Magee Scientific instruments, enabling standardised workflows for data acquisition, validation, and analysis.
 
 ---
 
@@ -34,15 +34,13 @@ This project serves as a **de facto SDK** for Magee Scientific instruments, enab
 
 aerosol_magee_pytools/
 
-├── io/            # TCP/IP, UIDEP, file readers
+├── data_access/            # TCP/IP, UIDEP
 
-├── qaqc/          # validation and filtering
+├── instruments/          # instrument specific settings
 
-├── processing/    # resampling and transformations
+├── examples/    # simplified examples for data access
 
-├── plotting/      # visualization tools
-
-└── utils/         # shared utilities
+└── tools/         # shared utilities
 
 ## 🤝 Contributing
 Contributions are welcome.
@@ -60,7 +58,7 @@ Follow existing structure
 Add tests when applicable
 
 ## 🎯 Project Goal
-Provide a standardized, reliable, and accessible Python SDK for aerosol instrument data, enabling:
+Provide a standardised, reliable, and accessible Python SDK for aerosol instrument data, enabling:
 
 reproducible analysis
 consistent QA/QC workflows
@@ -70,7 +68,7 @@ seamless integration into scientific environments
 Developed and maintained by:
 Aerosol Magee Scientific
 Aerosol d.o.o., Slovenia
-📧 sales@aerosolmageesci.com
+📧 mivancic@aerosolmageesci.com
 
 
 ## License
