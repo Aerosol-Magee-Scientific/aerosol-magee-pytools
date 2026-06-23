@@ -1,6 +1,11 @@
 import datetime
 
 import pandas as pd
+import numpy as np
+
+DOTNET_EPOCH_OFFSET_SECONDS = 62135596800
+DOTNET_EPOCH_OFFSET_MILLISECONDS = 62135596800000
+DOTNET_EPOCH_OFFSET_TICKS = 621355968000000000
 
 
 def parsing_datetime(text):
@@ -17,6 +22,40 @@ def parsing_datetime(text):
         except ValueError:
             pass
     raise ValueError(f'No valid date format found for parsing.\n{text}, {type(text)}')
+
+
+def dotnet_seconds_to_datetime(series):
+    values = pd.Series(pd.to_numeric(series, errors='coerce'), index=series.index)
+    valid_values = values.dropna()
+    if valid_values.empty:
+        return pd.Series(pd.NaT, index=series.index, dtype='datetime64[ns]')
+
+    sample_value = float(valid_values.iloc[0])
+
+    if sample_value >= 1e17:
+        unix_values = (values.astype('Int64') - DOTNET_EPOCH_OFFSET_TICKS) * 100
+        converted = pd.to_datetime(np.asarray(unix_values, dtype='float64'),
+                                   unit='ns',
+                                   errors='coerce')
+    elif sample_value >= 1e13:
+        converted = pd.to_datetime(np.asarray(values, dtype='float64') - DOTNET_EPOCH_OFFSET_MILLISECONDS,
+                                   unit='ms',
+                                   errors='coerce')
+    else:
+        converted = pd.to_datetime(np.asarray(values, dtype='float64') - DOTNET_EPOCH_OFFSET_SECONDS,
+                                   unit='s',
+                                   errors='coerce')
+
+    converted = converted.floor('min')
+    return pd.Series(converted, index=series.index)
+
+
+def datetime_to_dotnet_nanoseconds(series):
+    timestamps = pd.to_datetime(series, errors='coerce')
+    unix_ns = timestamps.astype('int64')  # nanoseconds since Unix epoch
+    ticks = unix_ns // 100 + DOTNET_EPOCH_OFFSET_TICKS
+    ticks[timestamps.isna()] = pd.NA
+    return pd.array(ticks, dtype='Int64')
 
 
 class Seasons:
