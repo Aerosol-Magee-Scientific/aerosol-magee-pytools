@@ -27,11 +27,14 @@ def receive_all(sock, buffer_size=BUFFER_SIZE, timeout=RECV_TIMEOUT):
     return received_text
 
 def request_tcp(ip, command, port=INSTRUMENT_PORT, buffer_size=BUFFER_SIZE, timeout=RECV_TIMEOUT):
-    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.settimeout(timeout)
-        s.connect((ip, port))
-        s.send(command.encode())
-        return receive_all(s, buffer_size=buffer_size, timeout=timeout)
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.settimeout(timeout)
+            s.connect((ip, port))
+            s.send(command.encode())
+            return receive_all(s, buffer_size=buffer_size, timeout=timeout)
+    except socket.timeout:
+        return None
 
 def guess_delimiter(sample_text):
     candidates = [',', '\t', '|', ';']
