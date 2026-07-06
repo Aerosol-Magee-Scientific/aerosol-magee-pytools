@@ -50,7 +50,7 @@ def dotnet_seconds_to_datetime(series):
     return pd.Series(converted, index=series.index)
 
 
-def datetime_to_dotnet_nanoseconds(series):
+def datetime_to_dotnet_ticks(series):
     timestamps = pd.to_datetime(series, errors='coerce')
     unix_ns = timestamps.astype('int64')  # nanoseconds since Unix epoch
     ticks = unix_ns // 100 + DOTNET_EPOCH_OFFSET_TICKS
