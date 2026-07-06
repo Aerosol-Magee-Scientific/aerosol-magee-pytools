@@ -54,3 +54,50 @@ def get_db_schema(db_path: str) -> tuple[dict, dict]:
     return tables, views
 
 
+def get_db_column_types(db_path: str) -> tuple[dict, dict]:
+    """
+    Inspect a SQLite database and return column types for all tables and views.
+    Useful for recreating the schema of an existing database.
+
+    Parameters
+    ----------
+    db_path : str
+        Absolute or relative path to the SQLite database file.
+
+    Returns
+    -------
+    tables : dict
+        {table_name: {column_name: column_type}} for every table in the database.
+    views : dict
+        {view_name: {column_name: column_type}} for every view in the database.
+
+    Examples
+    --------
+    >>> tables, views = get_db_column_types(r'C:/data/my_instrument.db')
+    >>> tables['Data']
+    {'ID': 'INTEGER', 'StartTimeUTC': 'INTEGER', 'Value': 'REAL', ...}
+    """
+    tables = {}
+    views = {}
+
+    with sqlite3.connect(db_path) as conn:
+        cursor = conn.cursor()
+
+        cursor.execute(
+            "SELECT name, type FROM sqlite_master "
+            "WHERE type IN ('table', 'view') "
+            "ORDER BY type, name"
+        )
+        objects = cursor.fetchall()
+
+        for name, obj_type in objects:
+            cursor.execute(f"PRAGMA table_info('{name}')")
+            # row[1] = column name, row[2] = column type
+            col_types = {row[1]: row[2] for row in cursor.fetchall()}
+
+            if obj_type == 'table':
+                tables[name] = col_types
+            else:
+                views[name] = col_types
+
+    return tables, views
