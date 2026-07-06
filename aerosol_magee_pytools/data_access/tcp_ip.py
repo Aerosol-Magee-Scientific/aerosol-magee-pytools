@@ -23,6 +23,8 @@ def receive_all(sock, buffer_size=BUFFER_SIZE, timeout=RECV_TIMEOUT):
             break
 
     received = b''.join(chunks)
+    if received is None:
+        return None
     received_text = received.decode(errors='replace').rstrip('\r\n\x00\x03')
     return received_text
 
